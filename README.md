@@ -12,5 +12,6 @@
 <li>Run <code>php artisan key:generate</code></li>
 <li>Run <code>php artisan migrate</code></li>
 <li>Run <code>php artisan serve</code></li>
+<li>Open new cmd or terminal, under the project, run<code>npm install && npm run dev</code></li>
 <li>Go to http://localhost:8000/</li>
 </ul>
