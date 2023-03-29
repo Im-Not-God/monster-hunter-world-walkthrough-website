@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 29, 2023 at 03:13 PM
+-- Generation Time: Mar 29, 2023 at 04:39 PM
 -- Server version: 5.7.36
 -- PHP Version: 8.2.0
 
@@ -98,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `name` varchar(50) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
-  `role` enum('user','author','admin','super user') DEFAULT NULL,
+  `role` enum('user','author','admin','super user') DEFAULT 'user',
   `remember_token` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `remember_token`, `created_at`) VALUES
-(1, 'owner', 'owner@gmail.com', '$2a$10$G89y4PGbZk5PnDUJjaMCDO2GbbxVQjedxCVAcFifvR9MhDfKmUAVG', 'super user', NULL, '2023-03-29 23:02:27');
+(1, 'owner', 'owner@gmail.com', '$2y$10$JpTYChlNmJJV/Ih1VSoL2ufSKZKWchM.L4pqqKrbFUVAu1YLj9K7W', 'super user', NULL, '2023-03-30 00:38:34');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
