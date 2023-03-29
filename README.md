@@ -12,6 +12,11 @@
 <li>Run <code>php artisan key:generate</code></li>
 <li>Run <code>php artisan migrate</code></li>
 <li>Run <code>php artisan serve</code></li>
-<li>Open new cmd or terminal, under the project, run<code>npm install && npm run dev</code></li>
+<li>Open new cmd or terminal, under the project, run <code>npm install && npm run dev</code></li>
 <li>Go to http://localhost:8000/</li>
 </ul>
+
+<h1>Database</h1>
+<p><b>test_awad.sql</b> contained the super user account</p>
+<p>email: owner@gmail.com</p>
+<p>password: owner</p>
