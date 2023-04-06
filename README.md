@@ -20,3 +20,7 @@
 <p><b>test_awad.sql</b> contained the super user account</p>
 <p>email: owner@gmail.com</p>
 <p>password: owner123</p>
+
+<h1>覆盖</h1>
+<p>根据覆盖文件里的文件路径覆盖</p>
+
