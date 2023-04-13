@@ -103,13 +103,27 @@
 
     ?>
     <div>
-        <table class="table">
-            <thead>
+        <table class="table table-striped table-hover">
+            <thead style="border-bottom-color: black;">
                 <tr>
                     <th>Weapon</th>
-                    <!-- <th>Rarity</th>
-                    <th>Attack</th>
-                    <th>Boost</th> -->
+                    <th class="text-center">Rarity</th>
+                    <th class="text-center">Attack</th>
+                    @if($type!="light-bowgun" && $type!="heavy-bowgun")
+                        <th class="text-center">Elements</th>
+                    @endif
+                    @if($type!="bow" && $type!="light-bowgun" && $type!="heavy-bowgun")
+                        <th class="text-center">Sharpness</th>
+                    @elseif($type =="heavy-bowgun")
+                        <th class="text-center">Special Ammo</th>
+                    @elseif($type=="bow")
+                        <th class="text-center">Coatings</th>
+                    @endif
+                    @if($type=="charge-blade" || $type =="switch-axe")
+                        <th class="text-center">Phial</th>
+                    @endif  
+                    <th class="text-center">Slots</th>
+                    <th class="text-center">Attributes</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,10 +137,7 @@
     <script>
         // 获取行元素列表
         let rows = document.querySelectorAll('.weaponRow');
-
-        let leading_spaces_records = [];
         let largest_leading_spaces = 0;
-        //let binding = [];
 
         // 遍历每一行元素并检查前面的空格数和下一行是否存在
         rows.forEach((row, index) => {
@@ -155,51 +166,25 @@
                     row.textContent = line.slice(0, line_first_char_index) + "┗ " + line.slice(line_first_char_index);
                 }
 
-                //leading_spaces_records.push([index, leading_spaces]);
-
                 if (largest_leading_spaces > leading_spaces) {
-                    let target_leading_spaces = leading_spaces;
 
-                    // console.log("largest_leading_spaces",largest_leading_spaces);
-                    // console.log("leading_spaces",leading_spaces);
-                    // console.log("target_leading_spaces",target_leading_spaces);
+                    let pid = parseInt(row.getAttribute("data-pid"));
+                    let pid_row_index = $("tr[data-id='" + pid + "']").index()+1;
 
-                    // console.log("leading_spaces_records", leading_spaces_records);
-                    // leading_spaces_records.forEach((leading_spaces_record) => {
-                    //     //console.log("leading_spaces_record", leading_spaces_record);
-                    //     if (leading_spaces_record[1] > target_leading_spaces) {
-                    //             let target_line_add = rows[leading_spaces_record[0]].textContent;
-                    //             //console.log(target_line_add);
-                    //             rows[leading_spaces_record[0]].textContent = target_line_add.slice(0, target_leading_spaces) + "┃ " + target_line_add.slice(target_leading_spaces);
-                    //     }
-
-                    // });
-                    // leading_spaces_records = [];
-                    // largest_leading_spaces = 0;
-
-                    let pid = parseInt(line.substr(line.indexOf("pid:")+4));
-                    if (pid)
-                        for (let i = pid+1; i < index; i++) {
+                    if (pid) {
+                        for (let i = pid_row_index; i < index; i++) {
                             let target_line_add = rows[i].textContent;
-                            rows[i].textContent = target_line_add.slice(0, leading_spaces) + "┃ " + target_line_add.slice(leading_spaces);
+                            if (target_line_add.slice(leading_spaces).charAt(0) == "┗") {
+                                rows[i].textContent = target_line_add.slice(0, leading_spaces) + target_line_add.slice(leading_spaces).replace("┗", "┣");
+
+                            } else if (target_line_add.slice(leading_spaces).charAt(0) != "┃" && target_line_add.slice(leading_spaces).charAt(0) != "┣") {
+                                rows[i].textContent = target_line_add.slice(0, leading_spaces) + "┃ " + target_line_add.slice(leading_spaces);
+                            }
+                            console.log(target_line_add.slice(leading_spaces).charAt(0));
                         }
-
-                } else {
-                    //leading_spaces_records.push([index, leading_spaces]);
+                    }
                 }
-
-                // let binding = [];
-                // leading_spaces_records.forEach((leading_spaces_record) => {
-                //     let start_target_line_index = null;
-                //     let end_target_line = rows[index -1];
-                //     if(leading_spaces_record[1]==leading_spaces){
-                //         start_target_line = leading_spaces_record[0] + 1;
-                //     }
-                //     rows[start_target_line[0]].textContent = end_target_line.slice(0, leading_spaces) + "┃ " + end_target_line.slice(leading_spaces);
-                // });
             }
-
-
 
         });
     </script>
