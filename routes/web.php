@@ -30,3 +30,7 @@ Route::get('/insideExample/{id}', [ArmorControllers::class, 'getAmmor']);
 Route::view('/navigationBar', 'navigationBar');
 
 Route::get('/example/{type}', [WeaponController::class, 'getWeapon']);
+
+Route::view('/directory', 'directory');
+
+Route::view('/', 'home');
