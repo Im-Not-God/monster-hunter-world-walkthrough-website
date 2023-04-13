@@ -26,12 +26,11 @@ class WeaponController extends Controller
         } else {
             // Process the data
             // ..
-            
-            return view('example', ['weaponTree'=>$this->generateWeaponTree($data)]);
+            return view('example', ['weaponTree'=>$this->generateWeaponTree($data), 'total'=>count($data), 'weapons'=>$data]);
         }
     }
 
-    public function generateWeaponTree($data, $parentId = null, $tab="")
+    public function generateWeaponTree($data, $parentId = null, $level=0, $token = false)
     { 
         // $output = '<ul>';
 
@@ -47,6 +46,20 @@ class WeaponController extends Controller
         // }
         // return $output .= '</ul>';
 
+        // $output = '<div class="dul tree">';
+
+        // foreach($data as $weapon){
+        //     if($weapon['crafting']['previous']==$parentId){
+        //         $output .= '<div class="dli tree">'.$weapon['name'];
+        //         if(count($weapon['crafting']['branches']) != 0){
+        //             $output .= $this->generateWeaponTree($data, $weapon['id']);
+        //         }else{
+        //             $output .= '</div>';
+        //         }
+        //     }
+        // }
+        // return $output .= '</div>';
+
         $output = '';
 
         foreach($data as $weapon){
@@ -54,16 +67,28 @@ class WeaponController extends Controller
                 // if(strlen($tab)){
                 //     $output .= '<tr><td>'.$tab."┗".$weapon['name'].'</td></tr>';
                 // }
-                if($parentId==null){
-                    $tab="";
+                // if($parentId==null){
+                //     $tab="";
+                //     // $level=1;
+                // }
+                if($token)
+                    $level--;
+                
+                $tab="";
+                for($i=0; $i< abs($level); $i++){
+                    $tab.="&emsp;";
                 }
-                $output .= '<tr class="weaponRow"><td>'.$tab.$weapon['name'].'</td></tr>';
+                $output .= '<tr><td class="weaponRow">'.$tab.$weapon['id']." ".$weapon['name']." pid:$parentId".'</td></tr>';
 
                 if(count($weapon['crafting']['branches']) != 0){
-                    $output .= $this->generateWeaponTree($data, $weapon['id'], $tab.="&emsp;");
+                    $token = true;
+                    $output .= $this->generateWeaponTree($data, $weapon['id'], $level++, $token);
+                }else{
+                    $token = false;
                 }
             }
         }
-        return $output;
+        
+        return $output.="";
     }
 }

@@ -13,13 +13,20 @@
 <body>
 
     <style>
-        ul {
+        /* div.tree{
+            margin-left: 5px;
+        }
+        div.tree >div.tree {
+            margin-left: 5px;
+        } */
+
+        .dul {
             list-style: none;
             padding-left: 20px;
             position: relative;
         }
 
-        ul:before {
+        .dul:before {
             content: "";
             /* border-left: 1px solid black; */
             background-color: black;
@@ -31,7 +38,7 @@
             top: -1px;
         }
 
-        ul li:before {
+        .dul .dli:before {
             content: "";
             /* border-left: 1px solid black; */
             background-color: black;
@@ -42,11 +49,15 @@
             top: 0.5em;
         }
 
-        ul li {
+        .dul .dli {
             position: relative;
             margin-bottom: 8px;
             padding-left: 4px;
         }
+
+        /* ul:nth-child(even) {
+            background: #cce5ff;
+        } */
 
         /* ul li:last-child:before {
             height: 50%;
@@ -92,16 +103,20 @@
 
     ?>
     <div>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th></th>
+                    <th>Weapon</th>
+                    <!-- <th>Rarity</th>
+                    <th>Attack</th>
+                    <th>Boost</th> -->
                 </tr>
             </thead>
             <tbody>
                 <?php
                 echo $weaponTree;
                 ?>
+
             </tbody>
         </table>
     </div>
@@ -111,7 +126,7 @@
 
         let leading_spaces_records = [];
         let largest_leading_spaces = 0;
-        let binding = [];
+        //let binding = [];
 
         // 遍历每一行元素并检查前面的空格数和下一行是否存在
         rows.forEach((row, index) => {
@@ -124,7 +139,6 @@
                 next_line_leading_spaces = next_line.length - next_line.trimLeft().length;
             }
 
-            leading_spaces_records.push([index, leading_spaces]);
             if (largest_leading_spaces < leading_spaces) {
                 largest_leading_spaces = leading_spaces;
             }
@@ -141,7 +155,7 @@
                     row.textContent = line.slice(0, line_first_char_index) + "┗ " + line.slice(line_first_char_index);
                 }
 
-                leading_spaces_records.push([index, leading_spaces]);
+                //leading_spaces_records.push([index, leading_spaces]);
 
                 if (largest_leading_spaces > leading_spaces) {
                     let target_leading_spaces = leading_spaces;
@@ -151,19 +165,26 @@
                     // console.log("target_leading_spaces",target_leading_spaces);
 
                     // console.log("leading_spaces_records", leading_spaces_records);
-                    leading_spaces_records.forEach((leading_spaces_record) => {
-                        //console.log("leading_spaces_record", leading_spaces_record);
-                        if (leading_spaces_record[1] > target_leading_spaces) {
-                                let target_line_add = rows[leading_spaces_record[0]].textContent;
-                                console.log(target_line_add);
-                                rows[leading_spaces_record[0]].textContent = target_line_add.slice(0, target_leading_spaces) + "┃ " + target_line_add.slice(target_leading_spaces);
+                    // leading_spaces_records.forEach((leading_spaces_record) => {
+                    //     //console.log("leading_spaces_record", leading_spaces_record);
+                    //     if (leading_spaces_record[1] > target_leading_spaces) {
+                    //             let target_line_add = rows[leading_spaces_record[0]].textContent;
+                    //             //console.log(target_line_add);
+                    //             rows[leading_spaces_record[0]].textContent = target_line_add.slice(0, target_leading_spaces) + "┃ " + target_line_add.slice(target_leading_spaces);
+                    //     }
+
+                    // });
+                    // leading_spaces_records = [];
+                    // largest_leading_spaces = 0;
+
+                    let pid = parseInt(line.substr(line.indexOf("pid:")+4));
+                    if (pid)
+                        for (let i = pid+1; i < index; i++) {
+                            let target_line_add = rows[i].textContent;
+                            rows[i].textContent = target_line_add.slice(0, leading_spaces) + "┃ " + target_line_add.slice(leading_spaces);
                         }
 
-                    });
-                    leading_spaces_records = [];
-                    largest_leading_spaces = 0;
-
-                }else{
+                } else {
                     //leading_spaces_records.push([index, leading_spaces]);
                 }
 
