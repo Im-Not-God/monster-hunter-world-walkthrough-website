@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WeaponController;
+use App\Http\Controllers\ArmorControllers;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,5 +24,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::view('/example', 'example');
+
+Route::get('/insideExample/{id}', [ArmorControllers::class, 'getAmmor']);
+
+Route::view('/navigationBar', 'navigationBar');
 
 Route::get('/example/{type}', [WeaponController::class, 'getWeapon']);
