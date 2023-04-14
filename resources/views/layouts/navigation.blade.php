@@ -14,7 +14,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-image: url('/img/extra/header_image_2.png'); background-color: #1D1D1D; background-size: 420px; background-repeat:no-repeat; background-position: right;">
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="height: 118px;background-image: url('/img/extra/header_image_2.png'); background-color: #1D1D1D; background-size: 420px; background-repeat:no-repeat; background-position: right;">
         <div class="container" style="margin-left: 50px">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('/img/extra/logo.png') }}" alt="Monster Hunter World" width="200">
@@ -40,14 +40,15 @@
                     <?php
                     // $superUserMacAddress = ['00-50-56-C0-00-08'];
                     // $clientMacAddress = strtok(exec('getmac'), ' ');
-                    // if (in_array($clientMacAddress, $superUserMacAddress)) { ?>
-                    
+                    // if (in_array($clientMacAddress, $superUserMacAddress)) { 
+                    ?>
+
                     <!-- <li class="nav-item {{ Request::is('authorize') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/authorize') }}">Authorize</a>
                     </li> -->
                     <?php
                     //}
-                    
+
                     ?>
                     @if(Auth::guard('admin')->check())
                     <li class="nav-item {{ Request::is('authorize') ? 'active' : '' }}">
@@ -61,7 +62,7 @@
                 <ul class="navbar-nav ms-auto" style="height:0px; margin-right: 270px;">
                     @if(Auth::guard()->check() || Auth::guard('admin')->check())
                     <li class="nav-item dropdown">
-                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             @if(Auth::guard('admin')->check())
                             {{ Auth::guard('admin')->user()->name }}
                             @else
@@ -69,26 +70,37 @@
                             @endif
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <ul class="dropdown-menu dropdown-menu-dark" style="margin-top: 55px;" aria-labelledby="dropdownMenuLink">
+                            <!-- <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li> -->
+                            <li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                                    {{ __('Logout') }}
+                                </a></li>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
-                        </div>
+                        </ul>
+
                     </li>
+                    @else
+                    @if (Route::has('login'))
+                    <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('login') }}">Login</a>
+                    </li>
+                    @endif
+
+                    @if (Route::has('register'))
+                    <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ route('register') }}">Register</a>
+                    </li>
+                    @endif
                     @endif
                 </ul>
 
-                @if(!(Auth::guard()->check() || Auth::guard('admin')->check()))
-                <ul class="navbar-nav ms-auto" style="height:150px; margin-right: 270px;">
+                <!-- @if(!(Auth::guard()->check() || Auth::guard('admin')->check()))
+                <ul class="navbar-nav ms-auto" style="height:0px; margin-right: 270px;">
                     @if (Route::has('login'))
                     <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
@@ -101,7 +113,7 @@
                     </li>
                     @endif
                 </ul>
-                @endif
+                @endif -->
 
             </div>
         </div>
@@ -132,11 +144,13 @@
         bottom: 10px;
     }
 
-    a.nav-link:hover::after {
+    a.nav-link:hover::after,
+    .ms-auto a.nav-link:focus::after {
         transform: scaleX(1);
     }
 
     a.nav-link:hover,
+    .ms-auto a.nav-link:focus,
     .active a.nav-link {
         color: gold;
     }
