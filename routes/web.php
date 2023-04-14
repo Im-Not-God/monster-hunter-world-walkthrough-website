@@ -33,7 +33,7 @@ Route::view('/directory/ailment_list', 'ailment_list');
 
 Route::get('/directory/ammor_list/{id}', [ArmorControllers::class, 'getAmmor']);
 
-Route::get('/insideWeapon/{id}', [WeaponController::class, 'getWeaponDetails']);
+Route::get('/directory/weapon_tree/{id}/detail', [WeaponController::class, 'getWeaponDetails']);
 
 Route::view('/navigationBar', 'navigationBar');
 
