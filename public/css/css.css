@@ -4,7 +4,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     font-family: "Marcellus SC";
-    color: #FFFFFF;
+    color: #FFFFFF !important;
 }
 
 /* table */
@@ -14,7 +14,7 @@ table {
 
 th,
 td {
-    text-align: center;
+    text-align: center !important;
     vertical-align: middle;
     padding: 10px;
     padding-left: 20px;

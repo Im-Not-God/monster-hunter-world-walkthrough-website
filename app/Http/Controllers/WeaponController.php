@@ -26,7 +26,7 @@ class WeaponController extends Controller
         } else {
             // Process the data
             // ..
-            return view('example', ['weaponTree' => $this->generateWeaponTree($data, $type), 'type' => $type]);
+            return view('weapon_tree', ['weaponTree' => $this->generateWeaponTree($data, $type), 'type' => $type]);
         }
     }
 
