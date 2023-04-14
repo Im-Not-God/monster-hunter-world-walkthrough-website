@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WeaponController;
 use App\Http\Controllers\ArmorControllers;
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,3 +44,8 @@ Route::get('/directory/weapon_tree/{type}', [WeaponController::class, 'getWeapon
 Route::view('/directory', 'directory');
 
 Route::view('/', 'home');
+
+Route::get('/posts', [App\Http\Controllers\PostController::class, 'getAllPosts']);
+Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPost']);
+Route::view('/post/create', 'create')->can('isAuthor', Post::class);
+Route::post('/post/create',[App\Http\Controllers\PostController::class, 'create']);
