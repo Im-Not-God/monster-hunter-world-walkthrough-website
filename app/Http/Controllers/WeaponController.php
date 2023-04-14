@@ -44,7 +44,7 @@ class WeaponController extends Controller
                     $tab .= "&emsp;";
                 }
                 $output .= '<tr data-id="' . $weapon['id'] . '">';
-                $output .= '<td class="weaponRow" data-pid="' . $parentId . '">' . $tab . $weapon['name'] . '</td>';
+                $output .= '<td class="weaponRow text-start" data-pid="' . $parentId . '">' . $tab . $weapon['name'] . '</td>';
                 $output .= '<td class="text-center">' . $weapon['rarity'] . '</td>';
                 $output .= '<td class="text-center">' . $weapon['attack']['display'] . '</td>';
 
@@ -61,7 +61,7 @@ class WeaponController extends Controller
                 }
 
                 if (array_key_exists('durability', $weapon)) {
-                    $output .= '<td class="align-center"><div class="progress" style="max-width: 100%; min-width: 100px; border-radius: unset;border:1px solid black;">';
+                    $output .= '<td class="align-center"><div class="progress" style="max-width: 100%; min-width: 100px; border-radius: unset;border:1px solid black; background-color: gray;">';
                     $output .= '
                     <div class="progress-bar bg-danger" style="width: ' . ($weapon['durability'][0]['red'] / 4) . '%;">
                         &nbsp; 
