@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： 127.0.0.1:3306
--- 生成日期： 2023-04-14 05:55:49
+-- 生成日期： 2023-04-14 13:44:51
 -- 服务器版本： 5.7.36
 -- PHP 版本： 8.2.0
 
@@ -161,15 +161,17 @@ CREATE TABLE IF NOT EXISTS `posts` (
   `like` int(11) DEFAULT NULL,
   `state` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `posts`
 --
 
 INSERT INTO `posts` (`id`, `user_id`, `title`, `content`, `created_at`, `view`, `like`, `state`) VALUES
-(1, 3, 'nihao', NULL, '2023-04-02 03:27:44', NULL, NULL, 1),
-(2, 2, 'testing', NULL, '2023-04-02 05:11:03', NULL, NULL, 1);
+(1, 3, 'How to attack monster', 'hellllllloooo', '2023-02-02 03:27:44', NULL, NULL, 1),
+(2, 2, 'testing', NULL, '2023-04-02 05:11:03', NULL, NULL, 1),
+(3, 2, 'nihao', 'hihihihihi', '2023-04-14 16:33:23', NULL, NULL, 1),
+(4, 3, 'te12345678', NULL, '2023-04-14 17:35:46', NULL, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -188,7 +190,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `remember_token` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 --
 -- 转存表中的数据 `users`
@@ -199,7 +201,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `mac_address`, `
 (2, 'Chong Yao Jun', 'yaojun12345678910@gmail.com', '$2y$10$jEd.UBPjLjQN5I2eY6nN9e2lg0542dPdXVtJzZ3zCrGcKEO3sa71K', 'author', '00-50-56-C0-00-08', NULL, '2023-04-01 02:29:25'),
 (3, 'test', 'mhw.laravel.mail@gmail.com', '$2y$10$KQCQFpzGNbs2FZb6rm.gEufG.TpAMQQ4E0EXIqtB9a9K7MaiDNuNK', 'author', '', 'OukuyN3Wq0a8MoigkeolkJwz6xnWdO63AEUcjqtzn8gvtjrr2aPHERis6CWt', '2023-04-01 02:57:53'),
 (4, 'user1', 'user1@gmail.com', '$2y$10$qLrtZm8A2Ba9RYyX0mbTM.907KH5AkraZy1MDzC5Lv1rkI62Wfm6q', 'user', '', NULL, '2023-04-02 05:14:48'),
-(5, 'testMac', 'testmac@gmail.com', '$2y$10$NT7QSVjwleW8It7/.PvsSehctpgQFlhkPIw1Djeo63SisQd3qu/2.', 'user', '00-50-56-C0-00-08', NULL, '2023-04-03 22:27:29');
+(5, 'testMac', 'testmac@gmail.com', '$2y$10$NT7QSVjwleW8It7/.PvsSehctpgQFlhkPIw1Djeo63SisQd3qu/2.', 'user', '00-50-56-C0-00-08', NULL, '2023-04-03 22:27:29'),
+(6, 'test', 'test2@gmail.com', '$2y$10$nf2eNj9trant3RkhZPSrn.PfTiw0jGysom3izafVnJfqzWUxH21Bu', 'user', '00-50-56-C0-00-08', NULL, '2023-04-14 19:03:04');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
