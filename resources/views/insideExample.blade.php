@@ -56,13 +56,21 @@
             <?php
             $slots = '';
             $skills = '';
-            foreach ($result['slots'] as $slot) {
+            if ($result['slots']) {
+                foreach ($result['slots'] as $slot) {
                 $slots .= '<img src="/img/slots/' . $slot['rank'] . '.png" alt="' . $slot['rank'] . '" width="25px">';
             }
-            foreach ($result['skills'] as $skill) {
-                $skills .= $skill['skillName'].' '.$skill['level']."\n";
+            }else{
+                $slots .= ' - ';
             }
-            $skills = substr($skills, 0, -1);
+            if ($result['skills']) {
+                foreach ($result['skills'] as $skill) {
+                    $skills .= $skill['skillName'].' '.$skill['level']."\n";
+                }
+                $skills = substr($skills, 0, -1);
+            }else{
+                $skills .= ' - ';
+            }
             ?>
             <td>{{$slots}}</td>
             <td>{{$skills}}</td>
