@@ -47,6 +47,7 @@ Route::view('/', 'home');
 
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'getAllPosts']);
 Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPost']);
+Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'getAllUsers']);
 Route::view('/post/create', 'create')->can('isAuthor', Post::class);
 Route::post('/post/create',[App\Http\Controllers\PostController::class, 'create']);
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete');
