@@ -35,7 +35,27 @@
                     <li class="nav-item {{ Request::is('posts') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
                     </li>
+
+
+                    <?php
+                    // $superUserMacAddress = ['00-50-56-C0-00-08'];
+                    // $clientMacAddress = strtok(exec('getmac'), ' ');
+                    // if (in_array($clientMacAddress, $superUserMacAddress)) { ?>
                     
+                    <!-- <li class="nav-item {{ Request::is('authorize') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/authorize') }}">Authorize</a>
+                    </li> -->
+                    <?php
+                    //}
+                    
+                    ?>
+                    @if(Auth::guard('admin')->check())
+                    <li class="nav-item {{ Request::is('authorize') ? 'active' : '' }}">
+                        <a class="nav-link" href="{{ url('/authorize') }}">Authorize</a>
+                    </li>
+
+                    @endif
+
                 </ul>
 
                 <ul class="navbar-nav ms-auto" style="height:0px; margin-right: 270px;">
