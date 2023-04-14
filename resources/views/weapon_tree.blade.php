@@ -8,6 +8,7 @@
     <title>Weapon Tree</title>
     <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
 
 <body>
@@ -47,7 +48,6 @@
                             <?php
                             echo $weaponTree;
                             ?>
-
                         </tbody>
                     </table>
                 </div>

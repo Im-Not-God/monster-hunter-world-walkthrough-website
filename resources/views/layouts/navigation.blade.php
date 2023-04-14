@@ -26,7 +26,7 @@
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item {{ Request::is('directory') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/directory') }}">Directory</a>
+                        <a class="nav-link" href="/directory/weapon_list">Directory</a>
                     </li>
                     <li class="nav-item {{ Request::is('posts') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/posts') }}">Posts</a>

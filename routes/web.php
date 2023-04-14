@@ -23,10 +23,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::view('/example', 'example');
+Route::view('/directory/monster_list', 'monster_list');
 Route::view('/directory/weapon_list', 'weapon_list');
+Route::view('/directory/ammor_list', 'ammor_list');
+Route::view('/directory/skill_list', 'skill_list');
+Route::view('/directory/decorations_list', 'decorations_list');
+Route::view('/directory/ailment_list', 'ailment_list');
 
-Route::get('/insideExample/{id}', [ArmorControllers::class, 'getAmmor']);
+Route::get('/directory/ammor_list/{id}', [ArmorControllers::class, 'getAmmor']);
 
 Route::get('/insideWeapon/{id}', [WeaponController::class, 'getWeaponDetails']);
 

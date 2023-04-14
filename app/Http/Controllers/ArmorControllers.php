@@ -24,7 +24,7 @@ class ArmorControllers extends Controller
     } else {
         // Process the data
         // ..
-        return view('insideExample',['data'=>$data]);
+        return view('ammor_detail',['data'=>$data]);
         }
     }
 }

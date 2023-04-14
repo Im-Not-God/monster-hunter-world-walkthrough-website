@@ -15,7 +15,7 @@
             opacity: 1;
             position: absolute;
             top: 270px;
-            left: 350px;
+            left: 130px;
             display: flex;
             flex-wrap: wrap;
             align-items: left;
@@ -28,7 +28,7 @@
             opacity: 1;
             position: absolute;
             top: 1010px;
-            left: 350px;
+            left: 130px;
             display: flex;
             flex-wrap: wrap;
             align-items: left;
@@ -71,8 +71,8 @@
             width: 129px;
             color: rgba(255, 255, 255, 1);
             position: absolute;
-            top: 220px;
-            left: 420px;
+            top: 150px;
+            left: 130px;
             font-family: Marcellus SC;
             font-weight: Regular;
             font-size: 48px;
@@ -85,7 +85,7 @@
             color: rgba(255, 255, 255, 1);
             position: absolute;
             top: 920px;
-            left: 420px;
+            left: 130px;
             font-family: Marcellus SC;
             font-weight: Regular;
             font-size: 48px;
@@ -107,25 +107,25 @@
                 <span class="meleeWord">Melee</span>
                 <div class="meleeDiv">
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/great_sword">
+                        <a href="/directory/weapon_tree/great-sword">
                             <img src="{{ asset('img\weapon icon\great_sword.png') }}" alt="GreatSword"><br>
                             <span class="melee">Great Sword</span>
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/long_sword">
+                        <a href="/directory/weapon_tree/long-sword">
                             <img src="{{ asset('img\weapon icon\long_sword.png') }}" alt="Long Sword"><br>
                             <span class="melee">Long Sword</span>
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/dual_blades">
+                        <a href="/directory/weapon_tree/dual-blades">
                             <img src="{{ asset('img\weapon icon\dual_blades.png') }}" alt="Dual Blades"><br>
                             <span class="melee">Dual Blades</span>
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/sword_shield">
+                        <a href="/directory/weapon_tree/sword-shield">
                             <img src="{{ asset('img\weapon icon\sword_shield.png') }}" alt="Sword & Shield"><br>
                             <span class="melee">Sword &amp; Shield</span>
                         </a>
@@ -137,7 +137,7 @@
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/hunting_horn">
+                        <a href="/directory/weapon_tree/hunting-horn">
                             <img src="{{ asset('img\weapon icon\hunting_horn.png') }}" alt="Hunting Horn"><br>
                             <span class="melee">Hunting Horn</span>
                         </a>
@@ -155,19 +155,19 @@
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/switch_axe">
+                        <a href="/directory/weapon_tree/switch-axe">
                             <img src="{{ asset('img\weapon icon\switch_axe.png') }}" alt="Switch Axe"><br>
                             <span class="melee">Switch Axe</span>
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/charge_blade">
+                        <a href="/directory/weapon_tree/charge-blade">
                             <img src="{{ asset('img\weapon icon\charge_blade.png') }}" alt="Charge Blade"><br>
                             <span class="melee">Charge Blade</span>
                         </a>
                     </div>
                     <div class="meleeContainer">
-                        <a href="/directory/weapon_tree/insect_glaive">
+                        <a href="/directory/weapon_tree/insect-glaive">
                             <img src="{{ asset('img\weapon icon\insect_glaive.png') }}" alt="Insect Glaive"><br>
                             <span class="melee">Insect Glaive</span>
                         </a>
@@ -183,13 +183,13 @@
                         </a>
                     </div>
                     <div class="rangeContainer">
-                        <a href="/directory/weapon_tree/light_bowgun">
+                        <a href="/directory/weapon_tree/light-bowgun">
                             <img src="{{ asset('img\weapon icon\light_bowgun.png') }}" alt="Light Bowgun"><br>
                             <span class="melee">Light Bowgun</span>
                         </a>
                     </div>
                     <div class="rangeContainer">
-                        <a href="/directory/weapon_tree/heavy_bowgun">
+                        <a href="/directory/weapon_tree/heavy-bowgun">
                             <img src="{{ asset('img\weapon icon\heavy_bowgun.png') }}" alt="GreatSword"><br>
                             <span class="melee">Heavy Bowgun</span>
                         </a>
