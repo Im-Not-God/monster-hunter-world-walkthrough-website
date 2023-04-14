@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 </head>
@@ -13,60 +14,6 @@
 <body>
 
     <style>
-        /* div.tree{
-            margin-left: 5px;
-        }
-        div.tree >div.tree {
-            margin-left: 5px;
-        } */
-
-        .dul {
-            list-style: none;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .dul:before {
-            content: "";
-            /* border-left: 1px solid black; */
-            background-color: black;
-            /* height: 100%; */
-            position: absolute;
-            left: 0px;
-            width: 1px;
-            bottom: 0;
-            top: -1px;
-        }
-
-        .dul .dli:before {
-            content: "";
-            /* border-left: 1px solid black; */
-            background-color: black;
-            position: absolute;
-            left: -20px;
-            width: 16px;
-            height: 1px;
-            top: 0.5em;
-        }
-
-        .dul .dli {
-            position: relative;
-            margin-bottom: 8px;
-            padding-left: 4px;
-        }
-
-        /* ul:nth-child(even) {
-            background: #cce5ff;
-        } */
-
-        /* ul li:last-child:before {
-            height: 50%;
-            bottom: 0;
-        }
-
-        ul li:last-child:after {
-            display: none;
-        } */
     </style>
 
     <?php
@@ -103,7 +50,7 @@
 
     ?>
     <div>
-        <table class="table table-striped table-hover">
+        <table class="table table-dark table-striped table-hover">
             <thead style="border-bottom-color: black;">
                 <tr>
                     <th>Weapon</th>
