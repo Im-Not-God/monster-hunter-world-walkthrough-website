@@ -43,7 +43,7 @@ class WeaponController extends Controller
                 for ($i = 0; $i < abs($level); $i++) {
                     $tab .= "&emsp;";
                 }
-                $output .= '<tr data-id="' . $weapon['id'] . '">';
+                $output .= '<tr data-id="' . $weapon['id'] . '"  class="clickable-row" >';
                 $output .= '<td class="weaponRow text-start" data-pid="' . $parentId . '">' . $tab . $weapon['name'] . '</td>';
                 $output .= '<td class="text-center">' . $weapon['rarity'] . '</td>';
                 $output .= '<td class="text-center">' . $weapon['attack']['display'] . '</td>';
