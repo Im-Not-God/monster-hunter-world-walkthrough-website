@@ -36,12 +36,23 @@ class PostController extends Controller
             return redirect('/posts');
         }
     }
-    public function edit()
+
+    public function edit($id)
     {
         if (Gate::allows('isAuthor')) {
-            dd('Author allowed');
-        } else {
-            dd('You are not an Author');
+            return view('update', ['post' => Post::find($id)]);
+            
+        }
+    }
+
+    public function update(Request $req)
+    {
+        if (Gate::allows('isAuthor')) {
+            $post = Post::find($req->id);
+            $post->title = $req['title'];
+            $post->content = $req['content'];
+            $post->save();
+            return redirect('/posts/'.($req->id));
         }
     }
 
