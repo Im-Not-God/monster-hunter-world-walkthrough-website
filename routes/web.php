@@ -50,3 +50,5 @@ Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPost
 Route::view('/post/create', 'create')->can('isAuthor', Post::class);
 Route::post('/post/create',[App\Http\Controllers\PostController::class, 'create']);
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete');
+Route::get('/post/edit/{id}',[App\Http\Controllers\PostController::class, 'edit'])->can('isAuthor', Post::class);
+Route::post('/post/update',[App\Http\Controllers\PostController::class, 'update']);
