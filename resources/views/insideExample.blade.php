@@ -72,7 +72,7 @@
                 $skills .= ' - ';
             }
             ?>
-            <td>{{$slots}}</td>
+            <td><?php echo $slots?></td>
             <td>{{$skills}}</td>
         </tr>
         @endforeach
