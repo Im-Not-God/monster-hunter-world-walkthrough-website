@@ -2,16 +2,18 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-   <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
+    
+    <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-image: url('/css/images/header_image_2.png'); background-color: #1D1D1D; background-size: 420px; background-repeat:no-repeat; background-position: right;">
+    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-image: url('/img/extra/header_image_2.png'); background-color: #1D1D1D; background-size: 420px; background-repeat:no-repeat; background-position: right;">
         <div class="container" style="margin-left: 50px">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('/css/images/logo.png') }}" alt="Gold Asset Management Logo" width="200">
+                <img src="{{ asset('/img/extra/logo.png') }}" alt="Monster Hunter World" width="200">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ ('Toggle navigation') }}">
@@ -29,18 +31,30 @@
                     <li class="nav-item {{ Request::is('posts') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
                     </li>
+                    @if(Auth::guard()->check() || Auth::guard('admin')->check())
                     <li class="nav-item {{ Request::is('profile') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/profile') }}">Profile</a>
                     </li>
+                    @endif
+
                 </ul>
+
+                @if(!(Auth::guard()->check() || Auth::guard('admin')->check()))
                 <ul class="navbar-nav ms-auto" style="height:150px; margin-right: 270px;">
-                    <li class="nav-item">
+                    @if (Route::has('login'))
+                    <li class="nav-item {{ Request::is('login') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('login') }}">Login</a>
                     </li>
-                    <li class="nav-item">
+                    @endif
+
+                    @if (Route::has('register'))
+                    <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('register') }}">Register</a>
                     </li>
+                    @endif
                 </ul>
+                @endif
+
             </div>
         </div>
     </nav>
