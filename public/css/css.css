@@ -1,0 +1,130 @@
+/* background and font */
+body {
+    background-color: #2E3236 !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Marcellus SC";
+    color: #FFFFFF;
+}
+
+/* table */
+table {
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: null;
+}
+
+th {
+    background-color: #1E2226;
+    color: white;
+    font-size: 18px;
+}
+
+td {
+    background-color: #262B31;
+    font-size: 14px;
+}
+
+/* drop down */
+/* .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.profile-btn:hover,
+.profile-btn:focus {
+    background-color: #ffffff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #1E2226;
+    min-width: 250px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.dropdown-content p {
+    margin: 0;
+    padding: 6px 0;
+    font-size: 18px;
+}
+
+.dropdown-content button {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #262B31;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.dropdown-content button:hover,
+.dropdown-content button:focus {
+    background-color: #3e8e41;
+}
+
+.show {
+    display: block;
+} */
+
+/* side navigation bar */
+.sidenav {
+    height: 100%;
+    /* set the height of the navigation bar to 100% of the viewport */
+    position: fixed;
+    /* make the navigation bar fixed so it stays in place */
+    z-index: 1;
+    /* set a higher z-index to make sure the navigation bar appears above other elements */
+    top: 166px;
+    /* position the navigation bar at the top of the viewport */
+    left: 0;
+    /* position the navigation bar at the left of the viewport */
+    background-color: #333;
+    /* set the background color of the navigation bar */
+    overflow-x: hidden;
+    /* hide the horizontal scrollbar if content overflows */
+    padding-top: 20px;
+    font-size: 20px;
+}
+
+.sidenav a {
+    display: block;
+    /* display the links as block elements to take up the full width of the navigation bar */
+    color: #fff;
+    /* set the color of the links */
+    text-decoration: none;
+    /* remove the underline from the links */
+    padding: 16px 36px;
+    /* add padding to the links */
+}
+
+.sidenav a:hover {
+    background-color: #ddd;
+    /* change the background color of the link on hover */
+    color: #333;
+    /* change the color of the link on hover */
+}
