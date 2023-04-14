@@ -78,12 +78,17 @@
       <div class="post-content">
         <p>{{$post->content}}</p>
 
-        @can('delete',$post)
+        @if(Auth::guard('admin')->check() || auth()->user()->can('delete', $post))
         <form action="{{ route('post.delete')}}" method="post">
           @csrf
           <button type="submit" name="id" value="{{$post->id}}" class="btn btn-danger float-end">delete</button>
         </form>
+        @endif
+
+        @can('update',$post)
+        <a href="/post/edit/{{$post->id}}"><button type="button" name="id" value="{{$post->id}}" class="btn btn-warning float-end">edit</button></a>
         @endcan
+
       </div>
     </div>
   </div>
