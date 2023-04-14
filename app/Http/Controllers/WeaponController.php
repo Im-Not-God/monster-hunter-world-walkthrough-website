@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class WeaponController extends Controller
 {
-    //
-    public $rarity = [];
 
     public function getWeapon($type)
     {
@@ -102,11 +100,13 @@ class WeaponController extends Controller
 
                 if (array_key_exists('coatings', $weapon)) {
                     $output .= '<td class="text-center">';
-                    $lastIndex = count($weapon['coatings']) -1;
-                    foreach ($weapon['coatings'] as $index=>$coating) {
-                        $output .= '<img src="/img/coatings/' . $coating . '.png" alt="' . $coating . '" width="25px">' . $coating;
-                        if($index < $lastIndex)
-                        $output .= ',';
+                    $lastIndex = count($weapon['coatings']) - 1;
+                    foreach ($weapon['coatings'] as $index => $coating) {
+                        if ($coating != "close range") {
+                            $output .= '<img src="/img/coatings/' . $coating . '.png" alt="' . $coating . '" width="25px">' . $coating;
+                            if ($index < $lastIndex)
+                                $output .= ',';
+                        }
                     }
                     $output .= '</td>';
                 }
@@ -130,9 +130,26 @@ class WeaponController extends Controller
 
                 if ($weapon['attributes']) {
                     $output .= '<td class="text-center">';
+                    $loop =0;
                     foreach ($weapon['attributes'] as $name => $value) {
-                        if ($name != "damageType" && $value)
-                            $output .= $name . ": " . $value . '</br>';
+                        if ($name!=='damageType' && $name!=='elderseal' && $value) {
+                            if($loop>0){
+                                $output .= ', ';
+                            }
+                            switch ($name) {
+                                case 'affinity':
+                                    $output .= '<img src="/img/attributes/affinity.png" alt="affinity" width="25px">: ' . $value . '%';
+                                    break;
+                                case 'defense':
+                                    $output .= '<img src="/img/attributes/defense.png" alt="defense" width="25px">: +' . $value . '';
+                                    break;
+                                default:
+                                    $output .= $name . ': ' . $value . '</br>';
+                            }
+                        }elseif(!$loop){
+                            $output .= ' - ';
+                        }
+                        $loop++;
                     }
                     $output .= '</td>';
                 } else {
