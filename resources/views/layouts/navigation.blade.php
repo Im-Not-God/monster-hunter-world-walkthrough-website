@@ -10,6 +10,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
+    <link rel="icon" href="{{ asset('/img/extra/logo.png') }}">
+
 </head>
 
 <body>
