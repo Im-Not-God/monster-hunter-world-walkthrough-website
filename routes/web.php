@@ -76,4 +76,4 @@ Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'inde
 Route::post('/authorize', [App\Http\Controllers\AuthorizeController::class, 'action']);
 
 // Route::get('/test', [App\Http\Controllers\UserController::class, 'checkAdmin']);
-Route::get('/test', [App\Http\Controllers\TestController::class, 'index']);
+// Route::get('/test', [App\Http\Controllers\TestController::class, 'index']);
