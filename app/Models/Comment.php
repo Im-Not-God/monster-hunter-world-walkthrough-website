@@ -16,6 +16,8 @@ class Comment extends Model
     /**
      * @var array
      */
+    public $timestamps = false;
+    
     protected $fillable = ['user_id', 'content', 'post_id', 'created_at'];
 
     public function user(){
