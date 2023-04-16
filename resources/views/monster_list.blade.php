@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <style>
+        .monster a {
+            color: rgba(255, 255, 255, 1);
+        }
+    </style>
 
     @extends('layouts.navigation')
     @section('content')
@@ -19,6 +24,7 @@
             @include('sideNav')
         </div>
         <div class="container">
+
             <h2>Large Monsters</h2>
             <?php
             // Set the API endpoint URL
@@ -40,7 +46,7 @@
             ?>
                 <div class="row">
                     @foreach($data as $result)
-                    <div class="col-sm-2 text-center">
+                    <div class="col-sm-2 text-center monster">
                         <a href="#?id={{$result['id']}}" class="text-decoration-none">
                             <img src="/img/monster icon/{{$result['name']}}.png" width="100px" alt=""><br>
                             {{$result['name']}}

@@ -28,7 +28,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto" style="height:0px;">
-                    <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+                    <li class="nav-item {{ (Request::is('/') || Request::is('home')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
                     <li class="nav-item {{ Request::is('directory') ? 'active' : '' }}">
@@ -38,21 +38,7 @@
                         <a class="nav-link" href="{{ url('/posts') }}">Posts</a>
                     </li>
 
-
-                    <?php
-                    // $superUserMacAddress = ['00-50-56-C0-00-08'];
-                    // $clientMacAddress = strtok(exec('getmac'), ' ');
-                    // if (in_array($clientMacAddress, $superUserMacAddress)) { 
-                    ?>
-
-                    <!-- <li class="nav-item {{ Request::is('authorize') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ url('/authorize') }}">Authorize</a>
-                    </li> -->
-                    <?php
-                    //}
-
-                    ?>
-                    @if(Auth::guard('admin')->check())
+                    @if(Auth::guard('admin')->check() || Auth::guard('superuser')->check())
                     <li class="nav-item {{ Request::is('authorize') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/authorize') }}">Authorize</a>
                     </li>
@@ -62,11 +48,13 @@
                 </ul>
 
                 <ul class="navbar-nav ms-auto" style="height:0px; margin-right: 270px;">
-                    @if(Auth::guard()->check() || Auth::guard('admin')->check())
+                    @if(Auth::guard()->check() || Auth::guard('admin')->check() || Auth::guard('superuser')->check())
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             @if(Auth::guard('admin')->check())
                             {{ Auth::guard('admin')->user()->name }}
+                            @elseif(Auth::guard('superuser')->check())
+                            {{ Auth::guard('superuser')->user()->name }}
                             @else
                             {{ Auth::user()->name}}
                             @endif

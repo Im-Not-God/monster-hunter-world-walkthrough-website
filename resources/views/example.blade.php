@@ -14,11 +14,12 @@
 <body>
 
     <style>
+        
     </style>
 
     <?php
     // Set the API endpoint URL
-    $url = 'https://mhw-db.com/monsters?q={"type":"large"}';
+    $url = 'https://mhw-db.com/monsters';
 
     // Fetch the JSON data from the API endpoint
     $json_data = file_get_contents($url);
@@ -38,7 +39,7 @@
             @foreach($data as $result)
             <div class="col-sm-2 text-center">
                 <a href="#?id={{$result['id']}}" class="text-decoration-none">
-                    <img src="/monster icon/{{$result['name']}}.png" width="100px" alt=""><br>
+                    <img src="/img/monster icon/{{$result['name']}}.png" width="100px" alt=""><br>
                     {{$result['name']}}
                 </a>
             </div>

@@ -2,9 +2,11 @@
 
 namespace App\Policies;
 
+use App\Models\Admin;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class PostPolicy
 {
@@ -62,16 +64,14 @@ class PostPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
+     * * @param  \App\Models\Admin  $admin
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
     public function delete(User $user, Post $post)
     {
-        //
         if($user->role==="author")
             return $user->id===$post->user_id;
-        if($user->role==="admin")
-            return true;
     }
 
     /**

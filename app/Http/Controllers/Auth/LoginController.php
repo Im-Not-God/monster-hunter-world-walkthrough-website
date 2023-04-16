@@ -11,6 +11,8 @@ use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\RedirectResponse;
+
 
 class LoginController extends Controller
 {
@@ -43,6 +45,7 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('guest:admin')->except('logout');
+        $this->middleware('guest:superuser')->except('logout');
     }
 
 
@@ -51,10 +54,10 @@ class LoginController extends Controller
     {
         $superUserMacAddress = ['00-50-56-C0-00-08'];
         $clientMacAddress = strtok(exec('getmac'), ' ');
-        if (Admin::where('mac_address', $clientMacAddress)->exists()) {
+        if (in_array($clientMacAddress, $superUserMacAddress)) {
+            return view('auth.login', ['role' => 'superuser']);
+        } elseif (Admin::where('mac_address', $clientMacAddress)->exists()) {
             return view('auth.login', ['role' => 'admin']);
-        } elseif (in_array($clientMacAddress, $superUserMacAddress)) {
-            return view('auth.login', ['role' => 'su']);
         } else
             return view('auth.login');
     }
@@ -93,19 +96,33 @@ class LoginController extends Controller
         // if($this->haveAdminRole($request)){
         //     return view('auth.login', ['showModal' => true]);
         // }
+
         if ($request->has('loginAs')) {
-            if ($request->loginAs === 'admin') {
-                return Auth::guard('admin')->attempt(
-                    $this->credentials($request),
-                    $request->boolean('remember')
-                );
-            }
+            return Auth::guard($request->loginAs)->attempt(
+                $this->credentials($request),
+                $request->boolean('remember')
+            );
         }
 
         return $this->guard()->attempt(
             $this->credentials($request),
             $request->boolean('remember')
         );
+    }
+
+    protected function authenticated(Request $request, $user)
+    {
+        // if ($request->has('redirect')) {
+        //     //return redirect(urldecode($request->redirect));
+        //     return "hello";
+        // } else {
+        //     return redirect()->intended($this->redirectPath());
+        // }
+        if ($request->has('redirect')) {
+            return redirect($request->input('redirectUrl'));
+        } else {
+            return redirect()->intended($this->redirectPath());
+        }
     }
 
     protected function haveAdminRole(Request $request)

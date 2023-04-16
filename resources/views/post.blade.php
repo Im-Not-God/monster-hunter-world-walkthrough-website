@@ -9,21 +9,12 @@
   <title>Post Page</title>
 
   <style>
-    /* th {
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-    }
 
-    td {
-      border-left: 1px solid black;
-      border-right: 1px solid black;
-    } */
-    thead {
-      border-bottom: 1px solid white;
+    .card{
+      transition: all 0.3s;
     }
-
-    tbody tr:hover {
-      cursor: pointer;
+    .card:hover{
+      transform: scale(1.05);
     }
   </style>
 
@@ -31,30 +22,24 @@
 
 <body>
   <div class="container mt-4">
-      @can('isAuthor')
-      <div class="text-center mb-3">
-        <a href="{{ url('/post/create')}}" class="btn btn-primary">create</a>
+    @can('isAuthor')
+    <div class="text-center mb-3">
+      <a href="{{ url('/post/create')}}" class="btn btn-primary">create</a>
     </div>
     @endcan
-    <table class="table table-dark table-hover">
-      <thead>
-        <tr>
-          <th style="width: 70%;">Title</th>
-          <th style="width: 15%;">Author</th>
-          <th style="width: 15%;">Posted Date</th>
-        </tr>
-      </thead>
-      <tbody>
 
-        @foreach ($posts as $post)
-        <tr class='clickable-row' data-href='/posts/{{$post->id}}'>
-          <td style="text-align:left;">{{$post->title}}</td>
-          <td style="text-align:left;">{{$post->user->name}}</td>
-          <td style="text-align:left;">{{$post->created_at}}</td>
-        </tr>
-        @endforeach
-      </tbody>
-    </table>
+    @foreach ($posts as $post)
+    <div class="card bg-dark position-relative mt-4 ">
+      <div class="card-body">
+        <h5 class="card-title">{{$post->title}}</h5>
+      </div>
+      <div class="card-footer text-muted">
+      {!! $post->user? ($post->user->name) : "<i>(deleted)</i>" !!}<span class="float-end">{{$post->created_at}}</span>
+      </div>
+      <a href="/posts/{{$post->id}}" class="stretched-link"></a>
+    </div>
+    @endforeach
+
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>

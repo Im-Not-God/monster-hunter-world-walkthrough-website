@@ -17,4 +17,8 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = ['user_id', 'content', 'post_id', 'created_at'];
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }

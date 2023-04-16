@@ -51,9 +51,34 @@
               @else
               <button type="submit" name="role" value="user" class="btn btn-secondary">Be user</button>
               @endif
-              @if($isSuperUser && !$user->admin)
+              @if(Auth::guard('superuser')->check() && !$user->admin)
               <button type="submit" name="admin" value="add" class="btn btn-warning">Be admin</button>
               @endif
+
+              @if($user->id != Auth::guard('admin')->user()->user_id)
+              <button type="button" data-bs-toggle="modal" data-bs-target="#modal{{$user->id}}" class="btn btn-danger">Delete</button>
+              @endif
+
+              <div class="modal fade" id="modal{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content bg-dark">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Confirmation of action</h5>
+                      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="text-danger fw-bold">Caution: Delete action cannot be reversed</div>
+                      Delete the user</br>
+                      name: {{$user->name}}&emsp;email: {{$user->email}}
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="submit" class="btn btn-danger" name="delete" value="true">Delete</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </form>
           </td>
         </tr>
@@ -67,7 +92,7 @@
         <tr>
           <th>Name</th>
           <th>Email</th>
-          @if($isSuperUser)
+          @if(Auth::guard('superuser')->check())
           <th>Action</th>
           @endif
         </tr>
@@ -78,13 +103,15 @@
         <tr class='clickable-row'>
           <td>{{$admin->name}}</td>
           <td>{{$admin->email}}</td>
-          @if($isSuperUser)
+          @if(Auth::guard('superuser')->check())
           <td>
+            @if(Auth::guard('superuser')->user()->email!=$admin->email)
             <form action="" method="POST">
               <input type="hidden" name="id" value="{{$admin->id}}" readonly>
               @csrf
               <button type="submit" name="admin" value="remove" class="btn btn-danger">Remove</button>
             </form>
+            @endif
           </td>
           @endif
         </tr>
