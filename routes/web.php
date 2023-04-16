@@ -44,7 +44,7 @@ Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete'
 // Route::get('/insideExample/{id}', [ArmorController::class, 'getAmmor']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/directory/ammor_list/{id}', [ArmorControllers::class, 'getAmmor']);
+Route::get('/directory/armor_list/{id}', [ArmorController::class, 'getArmor']);
 
 Route::get('/directory/weapon_tree/{id}/detail', [WeaponController::class, 'getWeaponDetails']);
 
@@ -56,20 +56,23 @@ Route::view('/', 'home');
 
 Route::view('/directory/monster_list', 'monster_list');
 Route::view('/directory/weapon_list', 'weapon_list');
-Route::view('/directory/ammor_list', 'ammor_list');
+Route::view('/directory/armor_list', 'armor_list');
 Route::view('/directory/skill_list', 'skill_list');
 Route::view('/directory/decorations_list', 'decorations_list');
 Route::view('/directory/ailment_list', 'ailment_list');
 
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'getAllPosts']);
-Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'getAllUsers'])->middleware('auth:admin');
-Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPost']);
-Route::view('/post/create', 'create')->can('isAuthor', Post::class)->middleware('auth');
+Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPostAndCommends'])->whereNumber('id');
+Route::view('/post/create', 'create')->can('isAuthor', Post::class)->middleware('auth')->can('isAuthor', Post::class);
 Route::post('/post/create',[App\Http\Controllers\PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
 Route::get('/post/edit/{id}',[App\Http\Controllers\PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
 Route::post('/post/update',[App\Http\Controllers\PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete')->middleware('auth');
+Route::post('/post/comment',[PostController::class,'comment']);
 
+Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
+Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
+Route::post('/authorize', [App\Http\Controllers\AuthorizeController::class, 'action']);
 
 // Route::get('/test', [App\Http\Controllers\UserController::class, 'checkAdmin']);
 Route::get('/test', [App\Http\Controllers\TestController::class, 'index']);
