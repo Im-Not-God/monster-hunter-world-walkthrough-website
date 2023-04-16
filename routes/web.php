@@ -63,12 +63,13 @@ Route::view('/directory/ailment_list', 'ailment_list');
 
 Route::get('/posts', [App\Http\Controllers\PostController::class, 'getAllPosts']);
 Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPostAndCommends'])->whereNumber('id');
-Route::view('/post/create', 'create')->can('isAuthor', Post::class)->middleware('auth')->can('isAuthor', Post::class);
+Route::view('/post/create', 'editor')->can('isAuthor', Post::class)->middleware('auth')->can('isAuthor', Post::class);
 Route::post('/post/create',[App\Http\Controllers\PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
 Route::get('/post/edit/{id}',[App\Http\Controllers\PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
 Route::post('/post/update',[App\Http\Controllers\PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete')->middleware('auth');
 Route::post('/post/comment',[PostController::class,'comment']);
+Route::post('/post/view',[PostController::class,'view']);
 
 Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
 Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);

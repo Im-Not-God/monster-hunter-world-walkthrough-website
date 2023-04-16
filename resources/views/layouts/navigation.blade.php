@@ -4,10 +4,7 @@
 <head>
 
     <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <link rel="icon" href="{{ asset('/img/extra/logo.png') }}">
