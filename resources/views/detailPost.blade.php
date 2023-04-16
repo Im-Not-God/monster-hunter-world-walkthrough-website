@@ -63,7 +63,7 @@
       font-size: small;
     }
 
-    .comment-container p{
+    .comment-container p {
       white-space: pre-wrap;
     }
   </style>
@@ -104,7 +104,27 @@
           @if(Auth::guard('admin')->check() || Auth::guard('superuser')->check() || auth()->user()->can('delete', $post))
           <form action="{{ route('post.delete')}}" method="post">
             @csrf
-            <button type="submit" name="id" value="{{$post->id}}" class="btn btn-danger float-end">delete</button>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-danger float-end">delete</button>
+
+            <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content bg-dark">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirmation of action</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="text-danger fw-bold">Caution: Delete action cannot be reversed</div>
+                    Delete the post permanently</br>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-danger" name="id" value="{{$post->id}}">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </form>
           @endif
           @endif
@@ -195,7 +215,9 @@
           clearInterval(timer);
           // do something when countdown is finished
           //alert("view");
-          $.post('/post/view', {post_id: '{{$post->id}}'}, function(data) {
+          $.post('/post/view', {
+            post_id: '{{$post->id}}'
+          }, function(data) {
             // handle success response from server
           });
         }
