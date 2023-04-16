@@ -42,7 +42,8 @@
         margin: 0 auto;
     }
 
-    .image-gif {
+    .image-gif,
+    .image-word {
         position: absolute;
     }
 
@@ -53,10 +54,26 @@
         position: absolute;
         transform: translateX(-110%);
     }
+
+    .image-word {
+        opacity: 0;
+        animation: fadeIn 5s forwards;
+        animation-delay: 12s;
+    }
+
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+    }
+    }
 </style>
 <div class="image-container">
     <img class="image" src="{{ asset('/img/extra/homepageimg_cleanup.jpg') }}" alt="My Image">
-    <img class="image image-gif" src="{{ asset('/img/extra/mhw_icon.gif') }}" alt="My Image">
+    <img class="image image-gif" src="{{ asset('/img/extra/mhw_icon_2.gif') }}" alt="My Image">
+    <div class="image-word"><img class="image" style="max-width: 600px;" src="{{ asset('/img/extra/mhw_word_2.png') }}" alt="My Image"></div>
 </div>
 
 <div class="content">
@@ -70,7 +87,7 @@
         <img class="image image-ign" src="{{ asset('/img/extra/ign_rating.png') }}" alt="My Image">
     </div>
     <div class="fs-3">
-    <pre style="margin: 0;">
+        <pre style="margin: 0;">
     Game genre       :  Action-adventure
     Game genre       :  Action-adventure
     Game developer   :  CAPCOM
