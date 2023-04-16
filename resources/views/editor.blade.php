@@ -23,7 +23,7 @@
                     <form action="" method="post">
                         @csrf
                         <h5 class="card-title">Title</h5>
-                        <input type="text" class="form-control bg-dark text-white" name="title" />
+                        <input type="text" class="form-control bg-dark text-white" name="title" autofocus/>
                         </br>
                         </br>
                         <h5 class="card-title">Content</h5>

@@ -9,6 +9,54 @@
 
     <link rel="icon" href="{{ asset('/img/extra/logo.png') }}">
 
+    <style>
+        a.nav-link {
+            padding: 14px;
+            border-bottom: 1.5px solid transparent;
+            /* color: #ab9002; */
+            position: relative;
+            font-size: 20px;
+        }
+
+        a.nav-link::after {
+            content: "";
+            height: 1px;
+            width: 100%;
+            position: absolute;
+            background-color: gold;
+            transform: scaleX(0);
+            transition: transform 250ms ease-in-out;
+            left: 0;
+            bottom: 10px;
+        }
+
+        a.nav-link:hover::after,
+        .ms-auto a.nav-link:focus::after {
+            transform: scaleX(1);
+        }
+
+        a.nav-link:hover,
+        .ms-auto a.nav-link:focus,
+        .active a.nav-link {
+            color: gold;
+        }
+
+
+        .active a.nav-link::before {
+            content: "";
+            /* height: 0; */
+            width: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 7px solid gold;
+            position: absolute;
+            left: 50%;
+            transform: translate(-7px, 0);
+            bottom: 0;
+        }
+    </style>
+
+
 </head>
 
 <body>
@@ -109,52 +157,5 @@
         @yield("content")
     </main>
 </body>
-
-<style>
-    a.nav-link {
-        padding: 14px;
-        border-bottom: 1.5px solid transparent;
-        /* color: #ab9002; */
-        position: relative;
-        font-size: 20px;
-    }
-
-    a.nav-link::after {
-        content: "";
-        height: 1px;
-        width: 100%;
-        position: absolute;
-        background-color: gold;
-        transform: scaleX(0);
-        transition: transform 250ms ease-in-out;
-        left: 0;
-        bottom: 10px;
-    }
-
-    a.nav-link:hover::after,
-    .ms-auto a.nav-link:focus::after {
-        transform: scaleX(1);
-    }
-
-    a.nav-link:hover,
-    .ms-auto a.nav-link:focus,
-    .active a.nav-link {
-        color: gold;
-    }
-
-
-    .active a.nav-link::before {
-        content: "";
-        /* height: 0; */
-        width: 0;
-        border-left: 7px solid transparent;
-        border-right: 7px solid transparent;
-        border-bottom: 7px solid gold;
-        position: absolute;
-        left: 50%;
-        transform: translate(-7px, 0);
-        bottom: 0;
-    }
-</style>
 
 </html>

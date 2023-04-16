@@ -30,11 +30,13 @@ class PostController extends Controller
     public function create(Request $req)
     {
         if (Gate::allows('isAuthor')) {
-            Post::create([
+            $data= Post::create([
                 'user_id' => Auth::user()->id,
                 'title' => $req['title'],
                 'content' => $req->content,
             ]);
+            
+            return redirect('/posts/'.$data->id);
         }
 
         return redirect('/posts');
