@@ -13,7 +13,7 @@
             align-items: center;
             /* width: 100%; */
             height: max-content;
-            margin: 50px 0;
+            margin: calc(35vh/2) 0;
             position: relative;
         }
 
