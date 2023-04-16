@@ -39,6 +39,7 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->middleware('guest:admin');
     }
 
     /**
@@ -64,19 +65,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        if (!User::where('role', 'super user')->exists()) {
-            return User::create([
-                'name' => $data['name'],
-                'email' => $data['email'],
-                'password' => Hash::make($data['password']),
-                'role' => 'super user'
-            ]);
-        }
-
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'mac_address' => strtok(exec('getmac'), ' '),
         ]);
     }
 }

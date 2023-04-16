@@ -24,7 +24,16 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'mac_address'
     ];
+
+    public function admin(){
+        return $this->hasOne(Admin::class);
+    }
+
+    public function getPost(){
+        return $this->hasMany('App\Models\Post');
+    }
 
     /**
      * The attributes that should be hidden for serialization.

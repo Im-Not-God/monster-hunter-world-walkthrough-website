@@ -5,6 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
+use App\Models\User;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -36,5 +42,80 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('guest:admin')->except('logout');
+    }
+
+
+
+    public function showLoginForm()
+    {
+        $superUserMacAddress = ['00-50-56-C0-00-08'];
+        $clientMacAddress = strtok(exec('getmac'), ' ');
+        if (Admin::where('mac_address', $clientMacAddress)->exists()) {
+            return view('auth.login', ['role' => 'admin']);
+        } elseif (in_array($clientMacAddress, $superUserMacAddress)) {
+            return view('auth.login', ['role' => 'su']);
+        } else
+            return view('auth.login');
+    }
+
+    // public function login(Request $request)
+    // {
+    //     $this->validateLogin($request);
+
+    //     if (method_exists($this, 'hasTooManyLoginAttempts') &&
+    //         $this->hasTooManyLoginAttempts($request)) {
+    //         $this->fireLockoutEvent($request);
+
+    //         return $this->sendLockoutResponse($request);
+    //     }
+
+    //     if ($this->attemptLogin($request)) {
+    //         if ($request->hasSession()) {
+    //             $request->session()->put('auth.password_confirmed_at', time());
+    //         }
+
+    //         if($this->haveAdminRole($request)){
+    //             return view('auth.login', ['showModal' => true]);
+    //         }
+
+    //         return $this->sendLoginResponse($request);
+    //     }
+
+    //     $this->incrementLoginAttempts($request);
+
+    //     return $this->sendFailedLoginResponse($request);
+    // }
+
+    protected function attemptLogin(Request $request)
+    {
+
+        // if($this->haveAdminRole($request)){
+        //     return view('auth.login', ['showModal' => true]);
+        // }
+        if ($request->has('loginAs')) {
+            if ($request->loginAs === 'admin') {
+                return Auth::guard('admin')->attempt(
+                    $this->credentials($request),
+                    $request->boolean('remember')
+                );
+            }
+        }
+
+        return $this->guard()->attempt(
+            $this->credentials($request),
+            $request->boolean('remember')
+        );
+    }
+
+    protected function haveAdminRole(Request $request)
+    {
+        if ($admin = Admin::with('user')->where('email', $request->email)) {
+            $clientMacAddress = strtok(exec('getmac'), ' ');
+            if ($admin->mac_address != $clientMacAddress) {
+                return true;
+            }
+        }
+        return false;
     }
 }

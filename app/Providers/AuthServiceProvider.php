@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-// use Illuminate\Support\Facades\Gate;
+use App\Models\Post;
+use App\Policies\PostPolicy;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -14,6 +16,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Post::class => PostPolicy::class,
     ];
 
     /**
@@ -25,6 +28,31 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        /* define an administrator user role */
+        Gate::define('isAdmin', function ($user) {
+            return $user->role == 'admin';
+        });
+
+        /* define an author user role */
+        Gate::define('isAuthor', function ($user) {
+            return $user->role == 'author';
+        });
+
+        /* define a user role */
+        Gate::define('isUser', function ($user) {
+            return $user->role == 'user';
+        });
+
+        Gate::define('isSuperUser', function () {
+            $allowedMacAddress = ['00-50-56-C0-00-08'];
+            $clientMacAddress = strtok(exec('getmac'), ' ');
+            return in_array($clientMacAddress, $allowedMacAddress);
+        });
+
+        Gate::define('checkAdminMacAddress', function ($user) {
+            // $clientMacAddress = strtok(exec('getmac'), ' ');
+            // return Admin::where('mac_address', $clientMacAddress)->exists;
+            return true;
+        });
     }
 }

@@ -17,6 +17,6 @@
 </ul>
 
 <h1>Database</h1>
-<p><b>test_awad.sql</b> contained the super user account</p>
-<p>email: owner@gmail.com</p>
-<p>password: owner123</p>
+<p><b>test_awad.sql</b></p>
+
+
