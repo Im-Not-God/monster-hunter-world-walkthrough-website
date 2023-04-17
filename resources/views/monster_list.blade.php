@@ -57,7 +57,7 @@
             }
 
             ?>
-            </br>
+            <br>
             <h2>Small Monsters</h2>
             <?php
             // Set the API endpoint URL
