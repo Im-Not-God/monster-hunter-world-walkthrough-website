@@ -25,7 +25,7 @@
         </div>
         <div class="container">
 
-            <h2>Large Monsters</h2>
+            <h1>Large Monsters</h1>
             <?php
             // Set the API endpoint URL
             $url = 'https://mhw-db.com/monsters?q={"type":"large"}';
@@ -58,7 +58,8 @@
 
             ?>
             <br>
-            <h2>Small Monsters</h2>
+            <br>
+            <h1>Small Monsters</h1>
             <?php
             // Set the API endpoint URL
             $url = 'https://mhw-db.com/monsters?q={"type":"small"}';

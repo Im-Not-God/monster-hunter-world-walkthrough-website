@@ -44,7 +44,7 @@
                 </ol>
             </nav> -->
 
-            <h2>Melee</h2>
+            <h1>Melee</h1>
             <div class="row weapon">
                 <div class="col-sm-3 text-center weapon">
                     <a href="/directory/weapon_tree/great-sword">
@@ -115,8 +115,9 @@
             </div>
 
             </br>
+            </br>
 
-            <h2>Range</h2>
+            <h1>Range</h1>
 
             <div class="row weapon">
                 <div class="col-sm-3 text-center weapon">
