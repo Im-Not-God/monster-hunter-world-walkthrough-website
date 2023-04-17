@@ -100,8 +100,8 @@
             </svg>
             {{$post->view}}
           </div>
-          @if(auth()->user())
-          @if(Auth::guard('admin')->check() || Auth::guard('superuser')->check() || auth()->user()->can('delete', $post))
+
+          @if(Auth::guard('admin')->check() || Auth::guard('superuser')->check() || (auth()->user() && auth()->user()->can('delete', $post)))
           <form action="{{ route('post.delete')}}" method="post">
             @csrf
             <button type="button" data-bs-toggle="modal" data-bs-target="#modal" class="btn btn-danger float-end">delete</button>
@@ -126,7 +126,6 @@
             </div>
 
           </form>
-          @endif
           @endif
 
           @can('update',$post)
