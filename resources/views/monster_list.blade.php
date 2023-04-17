@@ -47,10 +47,8 @@
                 <div class="row">
                     @foreach($data as $result)
                     <div class="col-sm-2 text-center monster">
-                        <a href="#?id={{$result['id']}}" class="text-decoration-none">
-                            <img src="/img/monster icon/{{$result['name']}}.png" width="100px" alt=""><br>
-                            {{$result['name']}}
-                        </a>
+                        <img src="/img/monster icon/{{$result['name']}}.png" width="100px" alt=""><br>
+                        {{$result['name']}}
                     </div>
                     @endforeach
                 </div>
