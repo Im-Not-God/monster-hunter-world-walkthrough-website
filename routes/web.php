@@ -25,24 +25,6 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete');
 
-
-// Route::view('/su', '')->middleware('SuperUser');
-
-// Route::get('/login/su', [LoginController::class, 'showSULoginForm']);
-
-// Route::view('/example', 'example');
-
-// Route::get('/example/{type}', [WeaponController::class, 'getWeapon']);
-
-// Route::view('/navigation', 'navigation');
-
-
-// Route::view('/directory', 'directory');
-
-// Route::view('/', 'home');
-
-// Route::get('/insideExample/{id}', [ArmorController::class, 'getAmmor']);
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/directory/armor_list/{id}', [ArmorController::class, 'getArmor']);
 
@@ -74,6 +56,3 @@ Route::post('/post/view',[PostController::class,'view']);
 Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
 Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
 Route::post('/authorize', [App\Http\Controllers\AuthorizeController::class, 'action']);
-
-// Route::get('/test', [App\Http\Controllers\UserController::class, 'checkAdmin']);
-// Route::get('/test', [App\Http\Controllers\TestController::class, 'index']);
