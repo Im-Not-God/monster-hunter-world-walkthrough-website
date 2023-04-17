@@ -12,9 +12,9 @@
 
 <body>
     <style>
-        .monster a {
+        /* .monster a {
             color: rgba(255, 255, 255, 1);
-        }
+        } */
     </style>
 
     @extends('layouts.navigation')
@@ -80,10 +80,8 @@
                 <div class="row">
                     @foreach($data as $result)
                     <div class="col-sm-2 text-center">
-                        <a href="#?id={{$result['id']}}" class="text-decoration-none">
                             <img src="/img/monster icon/{{$result['name']}}.png" width="100px" alt=""><br>
                             {{$result['name']}}
-                        </a>
                     </div>
                     @endforeach
                 </div>
