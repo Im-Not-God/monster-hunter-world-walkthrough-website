@@ -56,8 +56,8 @@
                                     <?php echo $item['name']; ?>
                                 </a>
                             </td>
-                            <td><?php echo $item['rarity']; ?></td>
-                            <td><?php echo $item['rank']; ?></td>
+                            <td><?php echo $item['pieces'][0]['rarity']; ?></td>
+                            <td><?php echo $item['pieces'][0]['rank']; ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
