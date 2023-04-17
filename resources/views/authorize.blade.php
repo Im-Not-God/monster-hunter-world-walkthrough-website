@@ -55,7 +55,9 @@
               <button type="submit" name="admin" value="add" class="btn btn-warning">Be admin</button>
               @endif
 
-              @if($user->id != Auth::guard('admin')->user()->user_id)
+              @if(Auth::guard('admin')->check() && ($user->id != Auth::guard('admin')->user()->user_id))
+              <button type="button" data-bs-toggle="modal" data-bs-target="#modal{{$user->id}}" class="btn btn-danger">Delete</button>
+              @elseif(Auth::guard('superuser')->check() && ($user->id != Auth::guard('superuser')->user()->user_id))
               <button type="button" data-bs-toggle="modal" data-bs-target="#modal{{$user->id}}" class="btn btn-danger">Delete</button>
               @endif
 
