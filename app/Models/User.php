@@ -19,13 +19,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'role',
-        'mac_address'
-    ];
+    protected $fillable = ['name','email','password','role','mac_address'];
 
     public function admin(){
         return $this->hasOne(Admin::class);
