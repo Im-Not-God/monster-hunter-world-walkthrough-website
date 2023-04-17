@@ -237,7 +237,7 @@
                 </tr>
                 @foreach ($result['ammo'] as $ammo)
                 <tr>
-                    <th>{{ $ammo['type'] }}</th>
+                    <th><img src="/img/ammo/{{$ammo['type']}}.png" width="25px">{{ $ammo['type'] }}</th>
                     @foreach ($ammo['capacities'] as $ammoNum)
                     <th>{{ $ammoNum }}</th>
                     @endforeach
