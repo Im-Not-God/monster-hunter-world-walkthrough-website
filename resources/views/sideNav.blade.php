@@ -42,8 +42,8 @@
                     <li class="nav-item {{ (Request::is('directory/weapon_list') || Request::is('directory/weapon_tree/*')) ? 'active' : '' }}">
                         <a class="nav-link" href="/directory/weapon_list">Weapon</a>
                     </li>
-                    <li class="nav-item {{ (Request::is('directory/ammor_list') || Request::is('directory/ammor_list/*')) ? 'active' : '' }}">
-                        <a class="nav-link" href="/directory/ammor_list">Armor</a>
+                    <li class="nav-item {{ (Request::is('directory/armor_list') || Request::is('directory/armor_list/*')) ? 'active' : '' }}">
+                        <a class="nav-link" href="/directory/armor_list">Armor</a>
                     </li>
                     <li class="nav-item {{ (Request::is('directory/monster_list')) ? 'active' : '' }}">
                         <a class="nav-link" href="/directory/monster_list">Monster</a>
