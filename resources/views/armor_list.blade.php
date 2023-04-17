@@ -19,52 +19,29 @@
             @include('sideNav')
         </div>
         <div class="container">
-            <?php
-            // Set the maximum execution time to 360 seconds (2 minutes)
-            set_time_limit(360);
-
-            // Set the API endpoint URL
-            $url = 'https://mhw-db.com/armor/sets';
-
-            // Fetch the JSON data from the API endpoint
-            $json_data = file_get_contents($url);
-
-            // Decode the JSON data into a PHP array
-            $data = json_decode($json_data, true);
-
-            // Check if the JSON data was successfully decoded
-            if ($data === null) {
-                // Handle the decoding error
-                echo "Error decoding JSON data";
-            } else {
-                // Process the data
-            ?>
-                <h1>Armor List</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Armor Name</th>
-                            <th>Rarity</th>
-                            <th>Rank</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($data as $item) : ?>
-                            <tr>
-                                <td>
-                                    <a href="/directory/armor_list/{{$item['id']}}" style="text-decoration: none;color: white;">
-                                        <?php echo $item['name']; ?>
-                                    </a>
-                                </td>
-                                <td>{{$item['pieces'][0]['rarity']}}</td>
-                                <td>{{$item['pieces'][0]['rank']}}</td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
-            <?php
-            }
-            ?>
+            <h1>Armor Set List</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Rarity</th>
+                        <th>Rank</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($data as $item)
+                    <tr>
+                        <td>
+                            <a href="/directory/armor_list/{{$item['id']}}" style="text-decoration: none;color: white;">
+                                <?php echo $item['name']; ?>
+                            </a>
+                        </td>
+                        <td>{{$item['pieces'][0]['rarity']}}</td>
+                        <td>{{$item['pieces'][0]['rank']}}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
         @endsection
 </body>

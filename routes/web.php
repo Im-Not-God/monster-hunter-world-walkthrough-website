@@ -1,9 +1,8 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\WeaponController;
-use App\Http\Controllers\ArmorController;
+use App\Http\Controllers\DirectoryController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
@@ -22,37 +21,34 @@ use Illuminate\Support\Facades\Auth;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/directory/armor_list/{id}', [ArmorController::class, 'getArmor']);
+Route::get('/directory/armor_list/{id}', [DirectoryController::class, 'getArmorDetail']);
 
-Route::get('/directory/weapon_tree/{id}/detail', [WeaponController::class, 'getWeaponDetails']);
-
-Route::get('/directory/weapon_tree/{type}', [WeaponController::class, 'getWeapon']);
+Route::get('/directory/weapon_tree/{id}/detail', [DirectoryController::class, 'getWeaponDetail']);
+Route::get('/directory/weapon_tree/{type}', [DirectoryController::class, 'getWeapon']);
 
 Route::view('/directory', 'directory');
 
 Route::view('/', 'home');
 
-Route::view('/directory/monster_list', 'monster_list');
+Route::get('/directory/monster_list', [DirectoryController::class, 'getMonsterList']);
 Route::view('/directory/weapon_list', 'weapon_list');
-Route::view('/directory/armor_list', 'armor_list');
-Route::view('/directory/skill_list', 'skill_list');
-Route::view('/directory/decorations_list', 'decorations_list');
-Route::view('/directory/ailment_list', 'ailment_list');
+Route::get('/directory/armor_list', [DirectoryController::class, 'getArmorList']);
+Route::get('/directory/skill_list', [DirectoryController::class, 'getSkillList']);
+Route::get('/directory/decorations_list', [DirectoryController::class, 'getDecorationList']);
+Route::get('/directory/ailment_list', [DirectoryController::class, 'getAilmentList']);
 
-Route::get('/posts', [App\Http\Controllers\PostController::class, 'getAllPosts']);
-Route::get('/posts/{id}', [App\Http\Controllers\PostController::class, 'showPostAndCommends'])->whereNumber('id');
+Route::get('/posts', [PostController::class, 'getAllPosts']);
+Route::get('/posts/{id}', [PostController::class, 'showPostAndCommends'])->whereNumber('id');
 Route::view('/post/create', 'editor')->can('isAuthor', Post::class)->middleware('auth')->can('isAuthor', Post::class);
-Route::post('/post/create',[App\Http\Controllers\PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
-Route::get('/post/edit/{id}',[App\Http\Controllers\PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
-Route::post('/post/update',[App\Http\Controllers\PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
+Route::post('/post/create',[PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
+Route::get('/post/edit/{id}',[PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
+Route::post('/post/update',[PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete')->middleware('auth');
 Route::post('/post/comment',[PostController::class,'comment']);
 Route::post('/post/view',[PostController::class,'view']);
 
-Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
-Route::get('/authorize', [App\Http\Controllers\AuthorizeController::class, 'index']);
-Route::post('/authorize', [App\Http\Controllers\AuthorizeController::class, 'action']);
+Route::get('/authorize', [AuthorizeController::class, 'index']);
+Route::get('/authorize', [AuthorizeController::class, 'index']);
+Route::post('/authorize', [AuthorizeController::class, 'action']);

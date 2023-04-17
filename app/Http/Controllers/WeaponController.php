@@ -8,27 +8,27 @@ use Illuminate\Http\Request;
 class WeaponController extends Controller
 {
 
-    public function getWeapon($type)
-    {
-        // Set the API endpoint URL
-        $url = 'https://mhw-db.com/weapons?q={"type":"' . $type . '"}';
+    // public function getWeapon($type)
+    // {
+    //     // Set the API endpoint URL
+    //     $url = 'https://mhw-db.com/weapons?q={"type":"' . $type . '"}';
 
-        // Fetch the JSON data from the API endpoint
-        $json_data = file_get_contents($url);
+    //     // Fetch the JSON data from the API endpoint
+    //     $json_data = file_get_contents($url);
 
-        // Decode the JSON data into a PHP array
-        $data = json_decode($json_data, true);
+    //     // Decode the JSON data into a PHP array
+    //     $data = json_decode($json_data, true);
 
-        // Check if the JSON data was successfully decoded
-        if ($data === null) {
-            // Handle the decoding error
-            echo "Error decoding JSON data";
-        } else {
-            // Process the data
-            // ..
-            return view('weapon_tree', ['weaponTree' => $this->generateWeaponTree($data, $type), 'type' => $type]);
-        }
-    }
+    //     // Check if the JSON data was successfully decoded
+    //     if ($data === null) {
+    //         // Handle the decoding error
+    //         echo "Error decoding JSON data";
+    //     } else {
+    //         // Process the data
+    //         // ..
+    //         return view('weapon_tree', ['weaponTree' => $this->generateWeaponTree($data, $type), 'type' => $type]);
+    //     }
+    // }
 
     public function generateWeaponTree($data, $type, $parentId = null, $level = 0, $token = false)
     {
@@ -167,25 +167,5 @@ class WeaponController extends Controller
         }
 
         return $output .= "";
-    }
-
-    public function getWeaponDetails($id){
-        $url = 'https://mhw-db.com/weapons/'.$id;
-
-        // Fetch the JSON data from the API endpoint
-        $json_data = file_get_contents($url);
-
-        // Decode the JSON data into a PHP array
-        $data = json_decode($json_data, true);
-
-        // Check if the JSON data was successfully decoded
-        if ($data === null) {
-            // Handle the decoding error
-            echo "Error decoding JSON data";
-        } else {
-            // Process the data
-            // ..
-            return view('insideWeapon', ['result' => $data]);
-        }
     }
 }
