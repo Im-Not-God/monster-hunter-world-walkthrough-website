@@ -62,40 +62,8 @@ class LoginController extends Controller
             return view('auth.login');
     }
 
-    // public function login(Request $request)
-    // {
-    //     $this->validateLogin($request);
-
-    //     if (method_exists($this, 'hasTooManyLoginAttempts') &&
-    //         $this->hasTooManyLoginAttempts($request)) {
-    //         $this->fireLockoutEvent($request);
-
-    //         return $this->sendLockoutResponse($request);
-    //     }
-
-    //     if ($this->attemptLogin($request)) {
-    //         if ($request->hasSession()) {
-    //             $request->session()->put('auth.password_confirmed_at', time());
-    //         }
-
-    //         if($this->haveAdminRole($request)){
-    //             return view('auth.login', ['showModal' => true]);
-    //         }
-
-    //         return $this->sendLoginResponse($request);
-    //     }
-
-    //     $this->incrementLoginAttempts($request);
-
-    //     return $this->sendFailedLoginResponse($request);
-    // }
-
     protected function attemptLogin(Request $request)
     {
-
-        // if($this->haveAdminRole($request)){
-        //     return view('auth.login', ['showModal' => true]);
-        // }
 
         if ($request->has('loginAs')) {
             return Auth::guard($request->loginAs)->attempt(
@@ -112,12 +80,6 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        // if ($request->has('redirect')) {
-        //     //return redirect(urldecode($request->redirect));
-        //     return "hello";
-        // } else {
-        //     return redirect()->intended($this->redirectPath());
-        // }
         if ($request->has('redirect')) {
             return redirect($request->input('redirectUrl'));
         } else {
