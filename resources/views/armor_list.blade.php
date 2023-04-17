@@ -24,7 +24,7 @@
                 set_time_limit(360);
             
                 // Set the API endpoint URL
-                $url = 'https://mhw-db.com/armor';
+                $url = 'https://mhw-db.com/armor/sets';
             
                 // Fetch the JSON data from the API endpoint
                 $json_data = file_get_contents($url);
