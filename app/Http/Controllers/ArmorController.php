@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ArmorControllers extends Controller
+class ArmorController extends Controller
 {
     public function getArmor($id){
         // Set the API endpoint URL
