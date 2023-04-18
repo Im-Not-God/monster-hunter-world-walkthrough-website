@@ -22,10 +22,6 @@
             z-index: 1;
         }
 
-        #navbarSupportedContent ul {
-            /* height: 0; */
-        }
-
         #navbarSupportedContent ul li {
             width: fit-content;
         }
