@@ -18,6 +18,18 @@
             font-size: 20px;
         }
 
+        #navbarSupportedContent.show {
+            z-index: 1;
+        }
+
+        #navbarSupportedContent ul {
+            /* height: 0; */
+        }
+
+        #navbarSupportedContent ul li {
+            width: fit-content;
+        }
+
         a.nav-link::after {
             content: "";
             height: 1px;
@@ -56,23 +68,22 @@
         }
     </style>
 
-
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="height: 118px;background-image: url('/img/extra/header_image_2.png'); background-color: #1D1D1D; background-size: 420px; background-repeat:no-repeat; background-position: right;">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="height: 118px;background-image: url('/img/extra/header_image_2.png'); background-color: #1D1D1D; background-size: 420px; background-repeat:no-repeat; background-position: right;">
         <div class="container" style="margin-left: 50px">
             <a class="navbar-brand" href="{{ url('/') }}">
                 <img src="{{ asset('/img/extra/logo.png') }}" alt="Monster Hunter World" width="200">
             </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ ('Toggle navigation') }}">
+            <button class="navbar-toggler me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ ('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto" style="height:0px;">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ (Request::is('/') || Request::is('home')) ? 'active' : '' }}">
                         <a class="nav-link" href="{{ url('/') }}">Home</a>
                     </li>
@@ -156,6 +167,25 @@
     <main>
         @yield("content")
     </main>
+
+    <script>
+        $(document).ready(function() {
+            reStyle();
+        });
+
+        var width = $(window).width();
+        $(window).on('resize', function() {
+            reStyle();
+        });
+
+        function reStyle() {
+            if ($('button.navbar-toggler').css("display") == "none") {
+                $('#navbarSupportedContent ul').css('height', 0);
+            } else {
+                $('#navbarSupportedContent ul').css('height', 'auto');
+            }
+        }
+    </script>
 </body>
 
 </html>
