@@ -51,5 +51,4 @@ Route::post('/post/comment',[PostController::class,'comment']);
 Route::post('/post/view',[PostController::class,'view']);
 
 Route::get('/authorize', [AuthorizeController::class, 'index']);
-Route::get('/authorize', [AuthorizeController::class, 'index']);
 Route::post('/authorize', [AuthorizeController::class, 'action']);
