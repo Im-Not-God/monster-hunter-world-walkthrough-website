@@ -44,7 +44,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('isSuperUser', function () {
-            $superUserMacAddress = (array)env('superUserMacAddress',['00-50-56-C0-00-08']);
+            $superUserMacAddress = explode(', ', env('SUPERUSER_MAC_ADDRESS', ['00-50-56-C0-00-08']));
             $clientMacAddress = strtok(exec('getmac'), ' ');
             return in_array($clientMacAddress, $superUserMacAddress);
         });
