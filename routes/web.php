@@ -23,16 +23,12 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
-
-Route::get('/directory/armor_list/{id}', [DirectoryController::class, 'getArmorDetail']);
-
-Route::get('/directory/weapon_tree/{id}/detail', [DirectoryController::class, 'getWeaponDetail']);
-Route::get('/directory/weapon_tree/{type}', [DirectoryController::class, 'getWeapon']);
-
-Route::view('/directory', 'directory');
-
 Route::view('/', 'home');
 
+Route::get('/directory/armor_list/{id}', [DirectoryController::class, 'getArmorDetail']);
+Route::get('/directory/weapon_tree/{id}/detail', [DirectoryController::class, 'getWeaponDetail']);
+Route::get('/directory/weapon_tree/{type}', [DirectoryController::class, 'getWeapon']);
+Route::view('/directory', 'directory');
 Route::get('/directory/monster_list', [DirectoryController::class, 'getMonsterList']);
 Route::view('/directory/weapon_list', 'weapon_list');
 Route::get('/directory/armor_list', [DirectoryController::class, 'getArmorList']);
@@ -42,13 +38,22 @@ Route::get('/directory/ailment_list', [DirectoryController::class, 'getAilmentLi
 
 Route::get('/posts', [PostController::class, 'getAllPosts']);
 Route::get('/posts/{id}', [PostController::class, 'showPostAndCommends'])->whereNumber('id');
-Route::view('/post/create', 'editor')->can('isAuthor', Post::class)->middleware('auth')->can('isAuthor', Post::class);
-Route::post('/post/create',[PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
-Route::get('/post/edit/{id}',[PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
-Route::post('/post/update',[PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
-Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete')->middleware('auth');
-Route::post('/post/comment',[PostController::class,'comment']);
 Route::post('/post/view',[PostController::class,'view']);
 
-Route::get('/authorize', [AuthorizeController::class, 'index']);
+//only author
+Route::view('/post/create', 'editor')->can('isAuthor', Post::class)->middleware('auth')->can('isAuthor', Post::class);
+Route::post('/post/create',[PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
+
+//only post's author
+Route::get('/post/edit/{id}',[PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
+Route::post('/post/update',[PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
+
+//only post's author, admin and su
+Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete')->middleware('auth');
+
+//except guest
+Route::post('/post/comment',[PostController::class,'comment']);
+
+//only admin and su
+Route::get('/authorize', [AuthorizeController::class, 'index'])->middleware('authorize');;
 Route::post('/authorize', [AuthorizeController::class, 'action']);

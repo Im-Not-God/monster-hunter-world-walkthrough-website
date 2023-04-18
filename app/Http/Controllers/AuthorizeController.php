@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Gate;
 class AuthorizeController extends Controller
 {
     //
-    public function __construct()
-    {
+    // public function __construct()
+    // {
             
-            $this->middleware('authorize');
-            // $this->middleware('auth:superuser');
-        }
+    //         $this->middleware('authorize');
+    //         // $this->middleware('auth:superuser');
+    // }
 
     public function index()
     {
