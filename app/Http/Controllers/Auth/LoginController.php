@@ -53,7 +53,6 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         $superUserMacAddress = explode(', ', env('SUPERUSER_MAC_ADDRESS', ['00-50-56-C0-00-08']));
-        return $superUserMacAddress;
         $clientMacAddress = strtok(exec('getmac'), ' ');
         if (in_array($clientMacAddress, $superUserMacAddress)) {
             return view('auth.login', ['role' => 'superuser']);
