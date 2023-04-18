@@ -43,14 +43,13 @@ class PostController extends Controller
         if (Gate::allows('isAuthor')) {
             if(Post::find($id)->user_id == Auth::user()->id)
                 return view('editor', ['post' => Post::find($id)]);
-            else
-                return redirect('/posts/'.$id);
         }
+        return redirect('/posts/'.$id);
     }
 
     public function update(Request $req)
     {
-        if (Gate::allows('isAuthor')) {
+        if (Gate::allows('update')) {
             $post = Post::find($req->id);
             $post->title = $req['title'];
             $post->content = $req['content'];

@@ -45,8 +45,8 @@ Route::view('/post/create', 'editor')->can('isAuthor', Post::class)->middleware(
 Route::post('/post/create',[PostController::class, 'create'])->can('isAuthor', Post::class)->middleware('auth');
 
 //only post's author
-Route::get('/post/edit/{id}',[PostController::class, 'edit'])->can('isAuthor', Post::class)->middleware('auth');
-Route::post('/post/update',[PostController::class, 'update'])->can('isAuthor', Post::class)->middleware('auth');
+Route::get('/post/edit/{id}',[PostController::class, 'edit'])->middleware('auth')->can('isAuthor', Post::class);
+Route::post('/post/update',[PostController::class, 'update'])->middleware('auth')->can('isAuthor', Post::class);
 
 //only post's author, admin and su
 Route::post('/post/delete',[PostController::class,'delete'])->name('post.delete')->middleware('auth');
