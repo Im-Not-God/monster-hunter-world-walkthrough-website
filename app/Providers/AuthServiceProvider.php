@@ -6,7 +6,7 @@ use App\Models\Post;
 use App\Policies\PostPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-
+use Illuminate\Support\Facades\Auth;
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -44,9 +44,9 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         Gate::define('isSuperUser', function () {
-            $allowedMacAddress = ['00-50-56-C0-00-08'];
+            $superUserMacAddress = explode(', ', env('SUPERUSER_MAC_ADDRESS', ['00-50-56-C0-00-08']));
             $clientMacAddress = strtok(exec('getmac'), ' ');
-            return in_array($clientMacAddress, $allowedMacAddress);
+            return in_array($clientMacAddress, $superUserMacAddress);
         });
 
         Gate::define('checkAdminMacAddress', function ($user) {

@@ -20,14 +20,14 @@
             @include('sideNav')
         </div>
         <div class="container">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <!-- <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item" aria-current="page"><a href="/directory">Directory</a></li>
                     <li class="breadcrumb-item" aria-current="page"><a href="/directory/weapon_list">Weapon</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{$type}}</li>
                 </ol>
-            </nav>
+            </nav> -->
 
             <style>
                 .clickable-row {

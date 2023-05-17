@@ -5,14 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Admin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class AuthorizeController extends Controller
 {
     //
+    // public function __construct()
+    // {
+            
+    //         $this->middleware('authorize');
+    //         // $this->middleware('auth:superuser');
+    // }
+
     public function index()
     {
-        return view('authorize', ['users' => User::all(), 'admins' => Admin::all(), 'isSuperUser' => $this->isSuperUser()]);
+        return view('authorize', ['users' => User::all(), 'admins' => Admin::all()]);
     }
 
     public function action(Request $req)
@@ -29,9 +37,13 @@ class AuthorizeController extends Controller
 
     public function adminSetRole(Request $req)
     {
-        $user = User::find($req->id);
-        $user->role = $req->role;
-        $user->save();
+        if($req->delete){
+            User::find($req->id)->delete();
+        }else{
+            $user = User::find($req->id);
+            $user->role = $req->role;
+            $user->save();
+        }
     }
 
     public function superUserSetRole(Request $req)
@@ -49,17 +61,18 @@ class AuthorizeController extends Controller
             } else {
                 Admin::find($req->id)->delete();
             }
-        } else {
+        } elseif($req->delete) {
+            User::find($req->id)->delete();
+        }else{
             $user = User::find($req->id);
             $user->role = $req->role;
             $user->save();
         }
     }
-
-    public function isSuperUser()
-    {
-        $superUserMacAddress = ['00-50-56-C0-00-08'];
-        $clientMacAddress = strtok(exec('getmac'), ' ');
-        return in_array($clientMacAddress, $superUserMacAddress);
-    }
+    // public function isSuperUser()
+    // {
+    //     $superUserMacAddress = ['00-50-56-C0-00-08'];
+    //     $clientMacAddress = strtok(exec('getmac'), ' ');
+    //     return in_array($clientMacAddress, $superUserMacAddress);
+    // }
 }

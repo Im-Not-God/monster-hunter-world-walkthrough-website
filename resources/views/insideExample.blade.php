@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Armor</title>
-    <link href="{{ asset('/css/css.css') }}" rel="stylesheet">
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
 
     <h2>Material</h2>
-    <table class="table table-dark table-striped table-hover">
+    <table>
         <tr>
             <th>Gear Name</th>
             <th>Production materials</th>
@@ -32,7 +30,7 @@
     </table>
 
     <h2>Attribute</h2>
-    <table class="table table-dark table-striped table-hover">
+    <table>
         <tr>
             <th></th>
             <th>Name</th>
@@ -67,7 +65,7 @@
             }
             if ($result['skills']) {
                 foreach ($result['skills'] as $skill) {
-                    $skills .= $skill['skillName'].' '.$skill['level']."<br>";
+                    $skills .= $skill['skillName'].' '.$skill['level']."\n";
                 }
                 $skills = substr($skills, 0, -1);
             }else{

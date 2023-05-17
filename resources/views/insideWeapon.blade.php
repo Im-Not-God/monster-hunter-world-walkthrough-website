@@ -19,7 +19,7 @@
             @include('sideNav')
         </div>
         <div class="container">
-            <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <!-- <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="/">Home</a></li>
                     <li class="breadcrumb-item" aria-current="page"><a href="/directory">Directory</a></li>
@@ -27,7 +27,7 @@
                     <li class="breadcrumb-item" aria-current="page"><a href="/directory/weapon_tree/{{$result['type']}}">{{$result['name']}}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">detail</li>
                 </ol>
-            </nav>
+            </nav> -->
             <?php
             $slots = '';
             $CraftingMaterials = '';
@@ -237,7 +237,7 @@
                 </tr>
                 @foreach ($result['ammo'] as $ammo)
                 <tr>
-                    <th>{{ $ammo['type'] }}</th>
+                    <th><img src="/img/ammo/{{$ammo['type']}}.png" width="25px">{{ $ammo['type'] }}</th>
                     @foreach ($ammo['capacities'] as $ammoNum)
                     <th>{{ $ammoNum }}</th>
                     @endforeach

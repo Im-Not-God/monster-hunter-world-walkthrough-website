@@ -16,7 +16,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="text-white bg-dark form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <input id="email" autocomplete="on" type="email" class="text-white bg-dark form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
@@ -58,10 +58,11 @@
                                     {{ __('Login') }}
                                 </button>
                                 @isset($role)
-                                @if($role=='admin')
+                                @if($role=='superuser')
                                 <button type="submit" class="btn btn-outline-primary" name="loginAs" value="admin">Login as Admin</button>
-                                @elseif($role=='su')
-                                <a href="" class="btn btn-outline-primary">Login as SU</a>
+                                <button type="submit" class="btn btn-outline-primary" name="loginAs" value="superuser">Login as Super User</button>
+                                @elseif($role=='admin')
+                                <button type="submit" class="btn btn-outline-primary" name="loginAs" value="admin">Login as Admin</button>
                                 @endif
                                 @endisset
 
@@ -73,8 +74,11 @@
 
                             </div>
                         </div>
-                    </form>
 
+                        @if(Request::has('redirectUrl'))
+                        <input type="hidden" readonly name="redirectUrl" value="{{urldecode(request()->query('redirectUrl'))}}"/>
+                        @endif
+                    </form>
                 </div>
             </div>
         </div>
